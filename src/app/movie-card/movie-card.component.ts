@@ -25,7 +25,8 @@ export class MovieCardComponent {
     public fetchApiData: FetchApiDataService, 
     public dialog: MatDialog, 
     public snackBar: MatSnackBar, 
-    public router: Router) { }
+    public router: Router
+    ) { }
   
 ngOnInit(): void {
   this.getMovies();
