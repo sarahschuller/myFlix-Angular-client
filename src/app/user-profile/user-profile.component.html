@@ -1,21 +1,16 @@
 <app-navigation></app-navigation>
 <div class="profile-body">
-  <mat-card class="profilebackground">
+  <mat-card class="profile-background">
     <div class="user-info">
       <h2>Hello {{ user.Username }}!</h2>
-      <h2 style="font-style: italic; text-decoration: underline">
-        Your Profile Information
-      </h2>
-
       <mat-card-header> </mat-card-header>
       <mat-card-content>
         <h3><b>Username: </b>{{ this.user.Username }}</h3>
         <h3><b>Email: </b>{{ user.Email }}</h3>
         <h3><b>Birthday: </b>{{ user.Birthday }}</h3>
         <br />
-        <!-- <h3><b>Favourite Movies:</b> {{ user.FavouriteMovies }}</h3> -->
         <button
-          class="profile-btn"
+          class="profile-button"
           mat-raised-button
           (click)="editUserProfile()"
           style="margin-right: 10px"
@@ -24,7 +19,7 @@
           Edit Profile
         </button>
         <button
-          class="profile-btn"
+          class="profile-button"
           color="warn"
           mat-raised-button
           (click)="deleteUserProfile()"
@@ -34,7 +29,7 @@
       </mat-card-content>
     </div>
   </mat-card>
-  <div class="moviebox">
+  <div class="favorite-movies">
     <div *ngIf="displayElement; else message">
       <h2>Favorite movies</h2>
       <mat-card *ngFor="let movie of favoriteMovies; let i = index">
@@ -70,14 +65,14 @@
               Genre Details
             </button>
             <button
-              class="synopsis-button"
+              class="description-button"
               mat-button
               color="primary"
               (click)="
                 openMovieDescription(movie.Title, movie.ImagePath, movie.Description)
               "
             >
-              Synopsis
+              Description
             </button>
             <button
               class="delete-button"
