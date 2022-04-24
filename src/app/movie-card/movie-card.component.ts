@@ -35,14 +35,14 @@ getMovies(): void {
     });
   }
   // open Director dialog
-  openDirectorDialog(name: string, bio: string, birth: string): void {
+  openDirectorCard(name: string, bio: string, birth: string): void {
     this.dialog.open(DirectorCardComponent, {
       data: {Name: name, Bio: bio, Birth: birth},
       width: '500px',
     });
   }
   // Open Genre View
-  openGenreDialog(name: string, description: string): void {
+  openGenreCard(name: string, description: string): void {
     this.dialog.open(GenreCardComponent, {
       data: {
         Name: name,
