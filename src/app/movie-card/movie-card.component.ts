@@ -8,6 +8,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 // Component Imports
 import { DirectorCardComponent } from '../director-card/director-card.component';
 import { GenreCardComponent } from '../genre-card/genre-card.component';
+import { MovieDescriptionComponent } from '../movie-description/movie-description.component';
 
 @Component({
   selector: 'app-movie-card',
@@ -46,6 +47,16 @@ getMovies(): void {
     this.dialog.open(GenreCardComponent, {
       data: {
         Name: name,
+        Description: description,
+      },
+      width: '500px'
+    });
+  }
+
+  openDescriptionCard(title: string, description: string): void {
+    this.dialog.open(MovieDescriptionComponent, {
+      data: {
+        Title: title,
         Description: description,
       },
       width: '500px'
