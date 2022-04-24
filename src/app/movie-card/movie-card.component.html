@@ -9,10 +9,21 @@
         <mat-card-actions>
             <button
                 mat-raised-button
+                (click)="openDescriptionCard(
+                    movie.Title, 
+                    movie.Description)"
+                style="margin: 10px;"
+                color="primary"
+            >
+                Description
+            </button>
+
+            <button
+                mat-raised-button
                 (click)="openGenreCard(
                     movie.Genre.Name, 
                     movie.Genre.Description)"
-                style="margin-right: 10px;"
+                style="margin: 10px;"
                 color="primary"
             >
                 Genre
@@ -23,24 +34,15 @@
                     movie.Director.Name, 
                     movie.Director.Bio, 
                     movie.Director.Birth)"
-                style="margin-right: 10px;"
+                style="margin: 10px;"
                 color="primary"
             >
                 Director
             </button>
 
-            <button
-                mat-raised-button
-                (click)="openDescriptionCard(
-                    movie.Title, 
-                    movie.Description)"
-                style="margin-right: 10px;"
-                color="primary"
-            >
-                Description
-            </button>
             
             <button
+                style="margin: 10px"
                 (click)="addFavoriteMovie(movie._id)">
             <mat-icon>favorite_border</mat-icon>
             </button>
