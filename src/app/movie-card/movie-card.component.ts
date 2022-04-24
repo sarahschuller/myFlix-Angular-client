@@ -20,10 +20,12 @@ export class MovieCardComponent {
   Username = localStorage.getItem('user');
   movies: any[] = [];
   currentUser: any = null;
+  currentFavorites: any = null;
   constructor(public fetchApiData: FetchApiDataService, public dialog: MatDialog, public snackBar: MatSnackBar, public router: Router) { }
   
 ngOnInit(): void {
   this.getMovies();
+  this.getCurrentUser();
 }
 
 
@@ -62,5 +64,36 @@ getMovies(): void {
       width: '500px'
     });
   }
+
+  getCurrentUser(): void {
+    const username = localStorage.getItem('user');
+    this.fetchApiData.getUserProfile(username).subscribe((resp: any) => {
+       
+     console.log(resp)
+      const currentUser=resp.Username
+      console.log(currentUser)
+      const currentFavs=resp.FavouriteMovies
+      console.log(currentFavs)
+
+    });
+  }
+
+  addFavoriteMovie(id: string): void {
+    console.log(id);
+    const token = localStorage.getItem('token');
+    console.log(token)
+    this.fetchApiData.addFavoriteMovies(id).subscribe((response: any) => {
+      console.log(response);
+      this.ngOnInit();
+    });
+        }
+    DeleteFavs(id: string): void {
+      console.log(id);
+        this.fetchApiData.deleteFavoriteMovies(id).subscribe((response: any) => {
+        console.log(response);
+      });
+      
+      }
+   
 
 }
