@@ -24,7 +24,7 @@ export class NavigationComponent implements OnInit {
     this.router.navigate(['movies']);
   }
   goToProfilePage(): void {
-    this.router.navigate(['profile']);
+    this.router.navigate(['/profile']);
   }
   logOut(): void {
     localStorage.clear();
