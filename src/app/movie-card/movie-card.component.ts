@@ -19,13 +19,16 @@ export class MovieCardComponent {
   user: any = {};
   Username = localStorage.getItem('user');
   movies: any[] = [];
-  currentUser: any = null;
-  currentFavorites: any = null;
-  constructor(public fetchApiData: FetchApiDataService, public dialog: MatDialog, public snackBar: MatSnackBar, public router: Router) { }
+  currentFavorites: any [] = [] ;
+
+  constructor (
+    public fetchApiData: FetchApiDataService, 
+    public dialog: MatDialog, 
+    public snackBar: MatSnackBar, 
+    public router: Router) { }
   
 ngOnInit(): void {
   this.getMovies();
-  this.getCurrentUser();
 }
 
 
@@ -37,14 +40,14 @@ getMovies(): void {
       return this.movies;
     });
   }
-  // open Director dialog
+  // Open Director Info View
   openDirectorCard(name: string, bio: string, birth: string): void {
     this.dialog.open(DirectorCardComponent, {
       data: {Name: name, Bio: bio, Birth: birth},
       width: '500px',
     });
   }
-  // Open Genre View
+  // Open Genre Info View
   openGenreCard(name: string, description: string): void {
     this.dialog.open(GenreCardComponent, {
       data: {
@@ -55,6 +58,7 @@ getMovies(): void {
     });
   }
 
+  // Open Movie Description view
   openDescriptionCard(title: string, description: string): void {
     this.dialog.open(MovieDescriptionComponent, {
       data: {
@@ -68,32 +72,18 @@ getMovies(): void {
   getCurrentUser(): void {
     const username = localStorage.getItem('user');
     this.fetchApiData.getUserProfile(username).subscribe((resp: any) => {
-       
-     console.log(resp)
-      const currentUser=resp.Username
-      console.log(currentUser)
-      const currentFavs=resp.FavouriteMovies
-      console.log(currentFavs)
-
     });
   }
 
-  addFavoriteMovie(id: string): void {
-    console.log(id);
-    const token = localStorage.getItem('token');
-    console.log(token)
+  addFavorite(id: string): void {
     this.fetchApiData.addFavoriteMovies(id).subscribe((response: any) => {
       console.log(response);
       this.ngOnInit();
     });
         }
-    DeleteFavs(id: string): void {
-      console.log(id);
+    deleteFavorite(id: string): void {
         this.fetchApiData.deleteFavoriteMovies(id).subscribe((response: any) => {
         console.log(response);
       });
-      
-      }
-   
-
+    }
 }
