@@ -32,48 +32,44 @@
   <div class="favorite-movies">
     <div *ngIf="displayElement; else message">
       <h2>Favorite movies</h2>
-      <mat-card *ngFor="let movie of favoriteMovies; let i = index">
-        <mat-dialog-content>
-          <mat-card-title>{{ movie.title }}</mat-card-title>
-          <mat-card-subtitle
-            ><img class="movie-image" src="{{ movie.ImagePath }}"
-          /></mat-card-subtitle>
-          <mat-card-header>
-            <button
-              class="director-button"
-              mat-button
-              color="primary"
-              (click)="
-                openDirectorCard(
-                  movie.Director.Name,
-                  movie.Director.Bio,
-                  movie.Director.Birth
-                )
-              "
-            >
-              Director Details
-            </button>
-
-            <button
-              class="genre-button"
-              mat-button
-              color="primary"
-              (click)="
-                openGenreCard(movie.Genre.Name, movie.Genre.Description)
-              "
-            >
-              Genre Details
-            </button>
-            <button
-              class="description-button"
-              mat-button
-              color="primary"
-              (click)="
-                openMovieDescription(movie.Title, movie.ImagePath, movie.Description)
-              "
-            >
-              Description
-            </button>
+      <mat-card *ngFor="let movie of favoriteMovies" style="flex: 1 1 auto;">
+        <mat-card-header>
+          <mat-card-title>{{movie.Title}}</mat-card-title>
+          </mat-card-header>
+          <img src={{movie.ImagePath}} alt= {{movie.Title}} />
+          <mat-card-actions>
+              <button
+                  mat-raised-button
+                  (click)="openDescriptionCard(
+                      movie.Title, 
+                      movie.Description)"
+                  style="margin: 10px;"
+                  color="primary"
+              >
+                  Description
+              </button>
+  
+              <button
+                  mat-raised-button
+                  (click)="openGenreCard(
+                      movie.Genre.Name, 
+                      movie.Genre.Description)"
+                  style="margin: 10px;"
+                  color="primary"
+              >
+                  Genre
+              </button>
+              <button
+                  mat-raised-button
+                  (click)="openDirectorCard(
+                      movie.Director.Name, 
+                      movie.Director.Bio, 
+                      movie.Director.Birth)"
+                  style="margin: 10px;"
+                  color="primary"
+              >
+                  Director
+              </button>
             <button
               class="delete-button"
               mat-button
@@ -82,8 +78,7 @@
             >
               Delete Favorite Movie
             </button>
-          </mat-card-header>
-        </mat-dialog-content>
+        </mat-card-actions>
       </mat-card>
     </div>
     <ng-template #message>

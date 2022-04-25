@@ -35,11 +35,10 @@ export class UserProfileComponent implements OnInit {
     this.getFavoriteMovies()  
   }
 
-  openMovieDescription(title: string, imagePath: any, description: string): void {
+  openDescriptionCard(title: string, description: string): void {
     this.dialog.open(MovieDescriptionComponent, {
       data: {
         Title: title,
-        ImagePath: imagePath,
         Description: description,
       },
       width: '500px'
