@@ -15,11 +15,11 @@ import { MovieDescriptionComponent } from '../movie-description/movie-descriptio
   templateUrl: './movie-card.component.html',
   styleUrls: ['./movie-card.component.scss']
 })
-export class MovieCardComponent {
+export class MovieCardComponent implements OnInit {
   user: any = {};
   Username = localStorage.getItem('user');
   movies: any[] = [];
-  currentFavorites: any [] = [] ;
+  favoriteMovie: any [] = [] ;
 
   constructor (
     public fetchApiData: FetchApiDataService, 
@@ -30,8 +30,8 @@ export class MovieCardComponent {
   
 ngOnInit(): void {
   this.getMovies();
+  this.showFavMovie();
 }
-
 
 //Get all movies
 getMovies(): void {
@@ -76,13 +76,37 @@ getMovies(): void {
     });
   }
 
-  addFavorite(id: string): void {
-    this.fetchApiData.addFavoriteMovies(id).subscribe((response: any) => {
-      console.log(response);
-      this.ngOnInit();
+  showFavMovie(): void {
+    const user = localStorage.getItem('user');
+    this.fetchApiData.getUserProfile(user).subscribe((resp: any) => {
+      this.favoriteMovie = resp.FavoriteMovies;
+      return this.favoriteMovie;
     });
-        }
-    deleteFavorite(id: string): void {
+  }
+
+  addFavorite(movieId: string, Title: string): void {
+    this.fetchApiData.addFavoriteMovies(this.user.username, movieId).subscribe((response: any) => {
+      console.log(response);
+      this.snackBar.open(`${Title} has been added to your favorites!`, 'Ok', {
+        duration: 3000,
+      });
+      this.showFavMovie();
+    });
+  }
+
+  setAsFavorite(movie: any): void {
+    this.isFavorite(movie._id)
+    ? this.deleteFavorite(movie._id)
+    : this.addFavorite(movie._id, movie.Title);
+  }
+
+  isFavorite(movieId: string): boolean {
+    console.log(movieId);
+    console.log('FavoriteMovie list', this.favoriteMovie);
+    return this.favoriteMovie.some((id) => id === movieId);
+  }
+
+  deleteFavorite(id: string): void {
         this.fetchApiData.deleteFavoriteMovies(id).subscribe((response: any) => {
         console.log(response);
       });
