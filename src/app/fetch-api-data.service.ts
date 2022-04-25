@@ -120,19 +120,19 @@ export class FetchApiDataService {
 
 
   // get list of the user's favorite movies
-  getFavoriteMovies(username: any, id: any): Observable<any> {
+  getFavoriteMovies(movieId: string): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http
-      .get(apiUrl + `users/${username}`, {
-        headers: new HttpHeaders({
-          Authorization: 'Bearer ' + token,
-        }),
-      })
-      .pipe(map(this.extractResponseData), catchError(this.handleError));
-  }
+        return this.http.get(apiUrl + `users/:username/movies/${movieId}`, {headers: new HttpHeaders(
+            {
+              Authorization: 'Bearer ' + token,
+            })}).pipe(
+            map(this.extractResponseData),
+            catchError(this.handleError)
+          );
+        }
 
   // add a movie to the user's list of favorites
-  public addFavoriteMovies(movieId: string, Title: string): Observable<any> {
+  public addFavoriteMovies(movieId: string): Observable<any> {
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('user');
     console.log(apiUrl + `users/${username}/movies/${movieId}`);

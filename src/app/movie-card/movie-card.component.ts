@@ -84,10 +84,10 @@ getMovies(): void {
     });
   }
 
-  addFavorite(movieId: string, Title: string): void {
-    this.fetchApiData.addFavoriteMovies(this.user.username, movieId).subscribe((response: any) => {
+  addFavorite(movieId: string): void {
+    this.fetchApiData.addFavoriteMovies(movieId).subscribe((response: any) => {
       console.log(response);
-      this.snackBar.open(`${Title} has been added to your favorites!`, 'Ok', {
+      this.snackBar.open(`Movie was successfully added to favorites!`, 'Ok', {
         duration: 3000,
       });
       this.showFavMovie();
@@ -97,7 +97,7 @@ getMovies(): void {
   setAsFavorite(movie: any): void {
     this.isFavorite(movie._id)
     ? this.deleteFavorite(movie._id)
-    : this.addFavorite(movie._id, movie.Title);
+    : this.addFavorite(movie._id);
   }
 
   isFavorite(movieId: string): boolean {
