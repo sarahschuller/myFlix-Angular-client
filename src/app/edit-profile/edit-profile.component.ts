@@ -14,9 +14,9 @@ export class EditProfileComponent implements OnInit {
   user: any = {};
 
   @Input() userData = { 
-    username: this.user.username,
-    password: this.user.password,
-    email: this.user.email,
+    Username: this.user.username,
+    Password: this.user.password,
+    Email: this.user.email,
   }
 
   constructor(
@@ -42,7 +42,7 @@ export class EditProfileComponent implements OnInit {
   editUserProfile(): void {
     this.fetchApiData.editUserProfile(this.userData).subscribe((resp) => {
       this.dialogRef.close();
-      localStorage.setItem('user', resp.username);
+      localStorage.setItem('user', resp.Username);
       this.snackBar.open('Your profile was updated successfully.', 'OK', {
         duration: 4000
       });
