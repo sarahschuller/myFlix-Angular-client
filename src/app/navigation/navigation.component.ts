@@ -20,12 +20,26 @@ export class NavigationComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+   /**
+   * Routes user to movies page
+   */
   toMovies(): void {
     this.router.navigate(['movies']);
   }
+
+  /**
+   * Logged in users are able to be routed to the profile view
+   */
   goToProfilePage(): void {
     this.router.navigate(['/profile']);
   }
+
+  /**
+   * Logs a user out, clears the localStorage
+   * Re-routes to the welcome page
+   */
+
   logOut(): void {
     localStorage.clear();
     this.snackBar.open('You have been successfully logged out', 'Ok', {
