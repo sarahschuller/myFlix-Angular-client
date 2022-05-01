@@ -25,3 +25,21 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+<h1>Features</h1>
+<ul>
+ <li>
+ Users can register an account and login to view the list of movies
+</li>
+ <li>
+  Users can save movies to their favorites list
+ <li>
+  Users can remove movies from their favorites list
+ </li>
+ <li>
+  Users can update their profile information (name, email, password)
+ </li>
+ <li>
+  Users can delete their account
+ </li>
+</ul>
