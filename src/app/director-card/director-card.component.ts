@@ -1,3 +1,8 @@
+/** 
+ * The Director Card is used to render a modal containing information about the director of the movie selected.
+ * @module DirectorCardComponent
+ */
+
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
