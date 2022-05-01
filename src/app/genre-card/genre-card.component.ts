@@ -1,3 +1,8 @@
+/** 
+ * The Genre Card is used to render a modal containing information about the genre of the movie selected.
+ * @module GenreViewComponent
+ */
+
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
